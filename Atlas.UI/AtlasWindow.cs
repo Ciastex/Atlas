@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
@@ -42,7 +43,6 @@ namespace Atlas.UI
             if (CaptionBorder != null)
             {
                 CaptionBorder.MouseDown += Border_MouseDown;
-                
             }
         }
 
@@ -54,9 +54,17 @@ namespace Atlas.UI
             });
         }
 
-        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
+
+            if (e.ClickCount == 2)
+            {
+                ToggleMaximizedState();
+            }
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -65,6 +73,16 @@ namespace Atlas.UI
         }
 
         private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleMaximizedState();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void ToggleMaximizedState()
         {
             if (WindowState == WindowState.Maximized)
             {
@@ -76,11 +94,6 @@ namespace Atlas.UI
                 MainBorder.Margin = new Thickness(6);
                 WindowState = WindowState.Maximized;
             }
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }
