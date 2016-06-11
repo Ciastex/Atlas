@@ -113,7 +113,7 @@
                                     </Grid>
                                 </Border>
 
-                               <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
+                               <ContentPresenter Content="{TemplateBinding Content}"/>
                             </Grid>
                         </Border>
                     </Grid>

@@ -40,7 +40,10 @@ namespace Atlas.UI
                 MinimizeButton.Click += MinimizeButton_Click;
 
             if (CaptionBorder != null)
+            {
                 CaptionBorder.MouseDown += Border_MouseDown;
+                
+            }
         }
 
         public void SetWindowBorderColor(Color color)
@@ -64,9 +67,15 @@ namespace Atlas.UI
         private void MaximizeButton_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Maximized)
+            {
+                MainBorder.Margin = new Thickness(0);
                 WindowState = WindowState.Normal;
+            }
             else
+            {
+                MainBorder.Margin = new Thickness(6);
                 WindowState = WindowState.Maximized;
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
