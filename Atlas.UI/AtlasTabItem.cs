@@ -49,6 +49,8 @@ namespace Atlas.UI
 
                 tabControl.Items.Remove(tabItemTarget);
                 tabControl.Items.Insert(sourceIndex, tabItemTarget);
+
+                tabControl.SelectedIndex = targetIndex;
             }
         }
 
