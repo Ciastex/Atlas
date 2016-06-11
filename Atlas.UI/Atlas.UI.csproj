@@ -54,6 +54,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AtlasTabControl.cs" />
+    <Compile Include="AtlasTabItem.cs" />
     <Compile Include="AtlasWindow.cs" />
     <Compile Include="Extensions\WinAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

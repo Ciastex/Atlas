@@ -48,7 +48,7 @@ namespace Atlas.UI
 
         public void SetWindowBorderColor(Color color)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            Application.Current?.Dispatcher.Invoke(() =>
             {
                 MainBorder.BorderBrush = new SolidColorBrush(color);
             });

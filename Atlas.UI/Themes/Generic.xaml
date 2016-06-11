@@ -17,12 +17,12 @@
                                           Content="{TemplateBinding Content}" />
                     </Grid>
 
-                    
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="PART_MainGrid" Property="Background" Value="#3F3F41" />
                         </Trigger>
-                        
+
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="PART_MainGrid" Property="Background" Value="#007ACC" />
                         </Trigger>
@@ -31,7 +31,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="{x:Type local:AtlasWindow}">
         <Setter Property="Background" Value="#2D2D30" />
 
@@ -45,78 +45,82 @@
             </Setter.Value>
 
         </Setter>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:AtlasWindow}">
-                    <Grid>
-                        <Border x:Name="PART_MainBorder"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="#0079CB"
-                                BorderThickness="1">
-                            <Grid>
-                                <Border x:Name="PART_Caption"
-                                        Height="30" 
-                                        Background="{TemplateBinding Background}" 
-                                        BorderThickness="0"
-                                        BorderBrush="Transparent"
-                                        VerticalAlignment="Top"
-                                        HorizontalAlignment="Stretch">
-                                    <Grid>
-                                        <TextBlock x:Name="PART_Title"
-                                                   Text="{TemplateBinding Title}"
-                                                   Margin="8 ,0,0,0" 
-                                                   VerticalAlignment="Center" 
-                                                   HorizontalAlignment="Left"
-                                                   Foreground="#999999" />
+                    <Border x:Name="PART_MainBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="#0079CB"
+                            BorderThickness="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                                        <StackPanel Orientation="Horizontal"
-                                                    VerticalAlignment="Top"
-                                                    HorizontalAlignment="Right">
-                                            <Button x:Name="PART_Minimize"
-                                                    Width="30"
-                                                    Height="30"
-                                                    Style="{StaticResource CaptionButtonStyle}">
-                                                <Image VerticalAlignment="Center"
-                                                       HorizontalAlignment="Center"
-                                                       SnapsToDevicePixels="True"
-                                                       Height="16"
-                                                       Width="17"
-                                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                                       Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_minimize.png" />
-                                            </Button>
-                                            <Button x:Name="PART_Maximize"
-                                                    Width="30"
-                                                    Height="30"
-                                                    Style="{StaticResource CaptionButtonStyle}">
-                                                <Image VerticalAlignment="Center"
-                                                       HorizontalAlignment="Center"
-                                                       SnapsToDevicePixels="True"
-                                                       Height="16"
-                                                       Width="17"
-                                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                                       Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_maximize.png" />
-                                            </Button>
-                                            <Button x:Name="PART_Close"
-                                                    Width="30"
-                                                    Height="30"
-                                                    Style="{StaticResource CaptionButtonStyle}">
-                                                <Image VerticalAlignment="Center"
-                                                       HorizontalAlignment="Center"
-                                                       SnapsToDevicePixels="True"
-                                                       Height="16"
-                                                       Width="17"
-                                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                                       Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_close.png" />
-                                            </Button>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
+                            <Border x:Name="PART_Caption"
+                                    Height="30" 
+                                    Background="{TemplateBinding Background}" 
+                                    BorderThickness="0"
+                                    BorderBrush="Transparent"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Stretch"
+                                    Grid.Row="0">
+                                <Grid>
+                                    <TextBlock x:Name="PART_Title"
+                                               Text="{TemplateBinding Title}"
+                                               Margin="8 ,0,0,0" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Left"
+                                               Foreground="#999999" />
 
-                               <ContentPresenter Content="{TemplateBinding Content}"/>
-                            </Grid>
-                        </Border>
-                    </Grid>
+                                    <StackPanel Orientation="Horizontal"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Right">
+                                        <Button x:Name="PART_Minimize"
+                                                Width="30"
+                                                Height="30"
+                                                Style="{StaticResource CaptionButtonStyle}">
+                                            <Image VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   SnapsToDevicePixels="True"
+                                                   Height="16"
+                                                   Width="17"
+                                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                   Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_minimize.png" />
+                                        </Button>
+                                        <Button x:Name="PART_Maximize"
+                                                Width="30"
+                                                Height="30"
+                                                Style="{StaticResource CaptionButtonStyle}">
+                                            <Image VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   SnapsToDevicePixels="True"
+                                                   Height="16"
+                                                   Width="17"
+                                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                   Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_maximize.png" />
+                                        </Button>
+                                        <Button x:Name="PART_Close"
+                                                    Width="30"
+                                                    Height="30"
+                                                    Style="{StaticResource CaptionButtonStyle}">
+                                            <Image VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   SnapsToDevicePixels="True"
+                                                   Height="16"
+                                                   Width="17"
+                                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                   Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_close.png" />
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive" Value="False">
@@ -125,6 +129,120 @@
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:AtlasTabControl}">
+        <Setter Property="Background" Value="#2D2D30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AtlasTabControl}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TabPanel Background="#2D2D30" 
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Top" 
+                                  IsItemsHost="True" 
+                                  Height="20" 
+                                  Grid.Row="0" />
+
+                        <Rectangle Grid.Row="1"
+                              VerticalAlignment="Stretch"
+                              HorizontalAlignment="Stretch" 
+                              Fill="#0079CB" />
+
+                        <ContentPresenter Grid.Row="2" 
+                                          Content="{TemplateBinding SelectedContent}" 
+                                          VerticalAlignment="Stretch"
+                                          HorizontalAlignment="Stretch" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CloseTabButton" TargetType="{x:Type Button}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="PART_Main">
+                        <Image VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               SnapsToDevicePixels="True"
+                               Height="16"
+                               Width="17"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               Source="pack://application:,,,/Atlas.UI;component/Resources/CaptionButtons/caption_close.png" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_Main" Property="Background" Value="#1C97EA" />
+                        </Trigger>
+                        
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PART_Main" Property="Background" Value="#0E6198" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type local:AtlasTabItem}">
+        <Setter Property="Background" Value="#2D2D30" />
+        <Setter Property="AllowDrop" Value="True" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AtlasTabItem}">
+                    <Grid Name="PART_Tab"
+                          Background="#2D2D30">
+                        <StackPanel Orientation="Horizontal" Height="Auto" VerticalAlignment="Stretch">
+                            <TextBlock x:Name="PART_Content"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"
+                                          Text="{TemplateBinding Header}"
+                                          Margin="5,2,5,2"
+                                          Foreground="White"
+                                          FontSize="12"
+                                          TextAlignment="Left"/>
+                            <Button x:Name="PART_CloseButton"
+                                    Width="15"
+                                    Height="15"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource CloseTabButton}"
+                                    Margin="5,2,5,2" />
+                        </StackPanel>
+
+                    </Grid>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="PART_Tab" Property="Background" Value="#0079CB" />
+                        </Trigger>
+                        
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_Tab" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            
+                            <Setter TargetName="PART_Tab" Property="Background" Value="#1C97EA" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
             </Setter.Value>
         </Setter>
     </Style>
