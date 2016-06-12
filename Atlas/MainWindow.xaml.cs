@@ -29,7 +29,7 @@ namespace Atlas
         {
             InitializeComponent();
 
-            timer = new Timer(250);
+            timer = new Timer(50);
             timer.Elapsed += Timer_Elapsed;
 
             rand = new Random();

@@ -88,6 +88,13 @@
     <Resource Include="Resources\CaptionButtons\caption_maximize.png" />
     <Resource Include="Resources\CaptionButtons\caption_minimize.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TabPanel\tabpanel_scroll_left.png" />
+    <Resource Include="Resources\TabPanel\tabpanel_scroll_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TabPanel\tabpanel_tabmenu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
