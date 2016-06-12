@@ -18,6 +18,7 @@ namespace Atlas.Controls
             InitializeComponent();
 
             TabControl.TabPanelDoubleClick += TabControl_TabPanelDoubleClick;
+            AddNewTab(null, true);
         }
 
         public void AddNewTab(string fileName, bool switchToNew)

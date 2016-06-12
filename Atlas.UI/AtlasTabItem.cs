@@ -14,6 +14,7 @@ namespace Atlas.UI
         private Button CloseButton { get; set; }
 
         public event EventHandler BeforeClosed;
+        public event EventHandler Closed;
 
         static AtlasTabItem()
         {
@@ -54,7 +55,7 @@ namespace Atlas.UI
             }
         }
 
-        private void AtlasTabItem_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void AtlasTabItem_MouseMove(object sender, MouseEventArgs e)
         {
             var tabItem = e.Source as AtlasTabItem;
             if (tabItem == null)
@@ -77,6 +78,7 @@ namespace Atlas.UI
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            BeforeClosed?.Invoke(this, EventArgs.Empty);
             Close();
         }
 
@@ -84,6 +86,8 @@ namespace Atlas.UI
         {
             var tabControl = Parent as TabControl;
             tabControl?.Items.Remove(this);
+
+            Closed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

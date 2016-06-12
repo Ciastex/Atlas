@@ -12,6 +12,7 @@ namespace Atlas.UI
         private Button ScrollLeftButton { get; set; }
         private Button ScrollRightButton { get; set; }
         private ScrollViewer ScrollView { get; set; }
+        private MenuItem TabMenu { get; set; }
 
         public event EventHandler TabPanelDoubleClick;
 
@@ -29,6 +30,7 @@ namespace Atlas.UI
             ScrollLeftButton = GetTemplateChild("PART_ScrollLeft") as Button;
             ScrollRightButton = GetTemplateChild("PART_ScrollRight") as Button;
             ScrollView = GetTemplateChild("PART_Scroller") as ScrollViewer;
+            TabMenu = GetTemplateChild("PART_TabMenu") as MenuItem;
 
             if (TabPanel != null)
                 TabPanel.MouseLeftButtonDown += TabPanel_MouseLeftButtonDown;
