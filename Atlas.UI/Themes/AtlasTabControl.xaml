@@ -133,20 +133,33 @@
                 <ControlTemplate TargetType="{x:Type MenuItem}">
                     <Border x:Name="PART_Border"
                             Background="#1B1B1C"
-                            BorderThickness="0"
-                            Padding="5,3,30,3">
+                            BorderThickness="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0"
+                                       x:Name="PART_SelectionMark"
+                                       Fill="#007ACC" 
+                                       VerticalAlignment="Stretch" />
 
-                        <ContentPresenter Content="{TemplateBinding Header}"
+                            <ContentPresenter Grid.Column="1"
+                                              Content="{TemplateBinding Header}"
                                               HorizontalAlignment="Stretch"
                                               VerticalAlignment="Center"
-                                              Margin="0" />
-
+                                              Margin="5,3,20,3" />
+                        </Grid>
                     </Border>
 
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsHighlighted" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="#333334" />
+                        </Trigger>
+                        
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="PART_SelectionMark" Property="Visibility" Value="Hidden" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -162,7 +175,7 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="2" />
+                            <RowDefinition Height="1" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 

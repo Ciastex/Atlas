@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using Atlas.UI.Events;
 
 namespace Atlas.UI
 {
@@ -12,7 +13,9 @@ namespace Atlas.UI
         private Button ScrollLeftButton { get; set; }
         private Button ScrollRightButton { get; set; }
         private ScrollViewer ScrollView { get; set; }
-        private MenuItem TabMenu { get; set; }
+
+        public event EventHandler<TabCloseEventArgs> BeforeTabClosed;
+        public event EventHandler TabClosed;
 
         public event EventHandler TabPanelDoubleClick;
 
@@ -30,7 +33,6 @@ namespace Atlas.UI
             ScrollLeftButton = GetTemplateChild("PART_ScrollLeft") as Button;
             ScrollRightButton = GetTemplateChild("PART_ScrollRight") as Button;
             ScrollView = GetTemplateChild("PART_Scroller") as ScrollViewer;
-            TabMenu = GetTemplateChild("PART_TabMenu") as MenuItem;
 
             if (TabPanel != null)
                 TabPanel.MouseLeftButtonDown += TabPanel_MouseLeftButtonDown;
@@ -56,6 +58,18 @@ namespace Atlas.UI
         {
             if (e.ClickCount == 2)
                 TabPanelDoubleClick?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void RemoveTabItem(AtlasTabItem tabItem)
+        {
+            var beforeClosedArgs = new TabCloseEventArgs();
+            BeforeTabClosed?.Invoke(this, beforeClosedArgs);
+
+            if (!beforeClosedArgs.Cancel)
+            {
+                Items.Remove(tabItem);
+                TabClosed?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }

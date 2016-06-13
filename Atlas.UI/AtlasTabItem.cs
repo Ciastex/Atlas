@@ -14,9 +14,6 @@ namespace Atlas.UI
     {
         private Button CloseButton { get; set; }
 
-        public event EventHandler<TabCloseEventArgs> BeforeClosed;
-        public event EventHandler Closed;
-
         static AtlasTabItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AtlasTabItem), new FrameworkPropertyMetadata(typeof(AtlasTabItem)));
@@ -25,7 +22,16 @@ namespace Atlas.UI
         public AtlasTabItem()
         {
             MouseMove += AtlasTabItem_MouseMove;
+            MouseDown += AtlasTabItem_MouseDown;
             Drop += AtlasTabItem_Drop;
+        }
+
+        private void AtlasTabItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.MiddleButton == MouseButtonState.Pressed)
+            {
+                Close();
+            }
         }
 
         private void AtlasTabItem_Drop(object sender, DragEventArgs e)
@@ -76,25 +82,19 @@ namespace Atlas.UI
             base.OnApplyTemplate();
             CloseButton = GetTemplateChild("PART_CloseButton") as Button;
 
-            if(CloseButton != null)
+            if (CloseButton != null)
                 CloseButton.Click += CloseButton_Click;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            var beforeClosedArgs = new TabCloseEventArgs();
-            BeforeClosed?.Invoke(this, beforeClosedArgs);
-
-            if(!beforeClosedArgs.Cancel)
-                Close();
+            Close();
         }
 
         public void Close()
         {
-            var tabControl = Parent as TabControl;
-            tabControl?.Items.Remove(this);
-
-            Closed?.Invoke(this, EventArgs.Empty);
+            var tabControl = Parent as AtlasTabControl;
+            tabControl?.RemoveTabItem(this);
         }
     }
 }
