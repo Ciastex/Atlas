@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Atlas.UI.Events;
 
 namespace Atlas.UI
 {
@@ -13,7 +14,7 @@ namespace Atlas.UI
     {
         private Button CloseButton { get; set; }
 
-        public event EventHandler BeforeClosed;
+        public event EventHandler<TabCloseEventArgs> BeforeClosed;
         public event EventHandler Closed;
 
         static AtlasTabItem()
@@ -33,6 +34,9 @@ namespace Atlas.UI
             var tabItemSource = e.Data.GetData(typeof(AtlasTabItem)) as AtlasTabItem;
 
             if (tabItemTarget == null)
+                return;
+
+            if (tabItemSource == null)
                 return;
 
             if (!tabItemTarget.Equals(tabItemSource))
@@ -78,8 +82,11 @@ namespace Atlas.UI
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            BeforeClosed?.Invoke(this, EventArgs.Empty);
-            Close();
+            var beforeClosedArgs = new TabCloseEventArgs();
+            BeforeClosed?.Invoke(this, beforeClosedArgs);
+
+            if(!beforeClosedArgs.Cancel)
+                Close();
         }
 
         public void Close()
