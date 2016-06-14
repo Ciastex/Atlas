@@ -1,0 +1,149 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Atlas.UI">
+
+    <ControlTemplate x:Key="TopLevelItemTemplate" TargetType="{x:Type local:AtlasMenuItem}">
+        <Grid x:Name="PART_Main"
+                Background="#2D2D30">
+            <TextBlock Padding="7,2" 
+                       Foreground="WhiteSmoke" 
+                       Text="{TemplateBinding Header}"/>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsHighlighted" Value="True" />
+                    <Condition Property="IsSubmenuOpen" Value="False" />
+                </MultiTrigger.Conditions>
+
+                <Setter TargetName="PART_Main" Property="Background" Value="#3E3E40" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsHighlighted" Value="True" />
+                    <Condition Property="IsSubmenuOpen" Value="True" />
+                </MultiTrigger.Conditions>
+
+                <Setter TargetName="PART_Main" Property="Background" Value="#1B1B1C" />
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TopLevelHeaderTemplate" TargetType="{x:Type local:AtlasMenuItem}">
+        <Grid x:Name="PART_Main"
+              Background="#2D2D30"
+              SnapsToDevicePixels="True">
+            <TextBlock Padding="7,2" 
+                       Foreground="WhiteSmoke" 
+                       Text="{TemplateBinding Header}"/>
+
+            <Popup Placement="Bottom" 
+                   IsOpen="{TemplateBinding IsSubmenuOpen}"
+                   SnapsToDevicePixels="True">
+                <Border Background="#1B1B1C"
+                        BorderBrush="#333337"
+                        BorderThickness="1"
+                        Padding="2"
+                        Focusable="False"
+                        SnapsToDevicePixels="True">
+                    <StackPanel IsItemsHost="True" />
+                </Border>
+            </Popup>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsHighlighted" Value="True" />
+                    <Condition Property="IsSubmenuOpen" Value="False" />
+                </MultiTrigger.Conditions>
+
+                <Setter TargetName="PART_Main" Property="Background" Value="#3E3E40" />
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsHighlighted" Value="True" />
+                    <Condition Property="IsSubmenuOpen" Value="True" />
+                </MultiTrigger.Conditions>
+
+                <Setter TargetName="PART_Main" Property="Background" Value="#1B1B1C" />
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="SubmenuItemTemplate" TargetType="{x:Type local:AtlasMenuItem}">
+        <Grid x:Name="PART_Main"
+              Background="#1B1B1C">
+            <TextBlock Padding="10,4" 
+                       Foreground="WhiteSmoke" 
+                       Text="{TemplateBinding Header}"/>
+
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="PART_Main" Property="Background" Value="#3E3E40" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+    <ControlTemplate x:Key="SubmenuHeaderTemplate" TargetType="{x:Type local:AtlasMenuItem}">
+        <Grid x:Name="PART_Main"
+              Background="#1B1B1C"
+              SnapsToDevicePixels="True">
+            <TextBlock Padding="10,4" 
+                       Margin="0,0,8,0"
+                       Foreground="WhiteSmoke" 
+                       Text="{TemplateBinding Header}"/>
+
+            <Path HorizontalAlignment="Right"
+                  VerticalAlignment="Center"
+                  Data="M 0 0 L 0 7 L 4 3.5 Z" 
+                  Fill="#6D6D70"
+                  Margin="4,0,7,0" />
+
+            <Popup Placement="Right" 
+                   IsOpen="{TemplateBinding IsSubmenuOpen}"
+                   SnapsToDevicePixels="True"
+                   VerticalOffset="-1"
+                   Focusable="False">
+                <Border BorderBrush="#333337"
+                        BorderThickness="1"
+                        Padding="2"
+                        Background="#1B1B1C"
+                        SnapsToDevicePixels="True">
+                    <StackPanel IsItemsHost="True" />
+                </Border>
+            </Popup>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="PART_Main" Property="Background" Value="#3E3E40" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+    <Style TargetType="{x:Type local:AtlasMenuItem}">
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Template" Value="{StaticResource TopLevelHeaderTemplate}" />
+                <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template" Value="{StaticResource TopLevelItemTemplate}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="Template" Value="{StaticResource SubmenuHeaderTemplate}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuItem">
+                <Setter Property="Template" Value="{StaticResource SubmenuItemTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

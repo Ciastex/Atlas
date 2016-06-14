@@ -82,19 +82,12 @@
                         <Popup Placement="Bottom" 
                                IsOpen="{TemplateBinding IsSubmenuOpen}"
                                SnapsToDevicePixels="True">
-                            <Popup.Effect>
-                                <DropShadowEffect Color="Black"
-                                                  BlurRadius="5"
-                                                  Direction="0"
-                                                  ShadowDepth="2"/>
-                            </Popup.Effect>
                             <Border Background="Transparent"
                                     BorderBrush="#333337"
                                     BorderThickness="1">
                                 <StackPanel IsItemsHost="True" />
                             </Border>
                         </Popup>
-
                     </Grid>
 
 
@@ -191,7 +184,7 @@
                                           HorizontalAlignment="Left"
                                           VerticalAlignment="Stretch"
                                           ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AtlasTabControl}}, Path=Items}"
-                                          ItemContainerStyle="{StaticResource TabMenuItem}"/>
+                                          ItemContainerStyle="{StaticResource TabMenuItem}" />
                             </Menu>
 
                             <ScrollViewer x:Name="PART_Scroller"
@@ -228,13 +221,27 @@
                               HorizontalAlignment="Stretch" 
                               Fill="#0079CB" />
 
-                        <ContentPresenter Grid.Row="2" 
-                                          ContentSource="SelectedContent"
-                                          VerticalAlignment="Stretch"
-                                          HorizontalAlignment="Stretch" />
+                        <Grid Grid.Row="2">
+                            <ContentPresenter x:Name="PART_Content"
+                                              ContentSource="SelectedContent"
+                                              VerticalAlignment="Stretch"
+                                              HorizontalAlignment="Stretch" />
+                            <TextBlock x:Name="PART_NoTabsInfo"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Foreground="#6D6D70">
+                                It's so empty in here. There are no open tabs. <LineBreak />
+                                Open a file, or double-click on the tab panel to create a new buffer.
+                            </TextBlock>
+                        </Grid>
                     </Grid>
 
                     <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="True">
+                            <Setter TargetName="PART_NoTabsInfo" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition SourceName="PART_Scroller" Property="ScrollableWidth" Value="0" />

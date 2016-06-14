@@ -5,8 +5,34 @@
                 xmlns:controls="clr-namespace:Atlas.Controls"
                 Title="Atlas IDE" Height="350" Width="525"
                 Background="#2D2D30">
+    <ui:AtlasWindow.CaptionMenu>
+        <ui:AtlasMenuItem Header="File">
+            <ui:AtlasMenuItem Header="Open" />
+            <ui:AtlasMenuItem Header="Save" />
+            <ui:AtlasMenuItem Header="Exit" />
+        </ui:AtlasMenuItem>
 
-    <controls:EditorView />
+        <ui:AtlasMenuItem Header="Edit">
+            <ui:AtlasMenuItem Header="Nope, no editing for you" />
+        </ui:AtlasMenuItem>
+        <ui:AtlasMenuItem Header="View">
+            <ui:AtlasMenuItem Header="No viewing permitted." />
+        </ui:AtlasMenuItem>
+        <ui:AtlasMenuItem Header="Build">
+            <ui:AtlasMenuItem Header="Out of concrete. Please move along." />
+        </ui:AtlasMenuItem>
+        <ui:AtlasMenuItem Header="Tools">
+            <ui:AtlasMenuItem Header="Build your own." />
+        </ui:AtlasMenuItem>
+        <ui:AtlasMenuItem Header="Help">
+            <ui:AtlasMenuItem Header="There's no help." />
+        </ui:AtlasMenuItem>
+    </ui:AtlasWindow.CaptionMenu>
+
+    <Grid>
+
+        <controls:EditorView />
+    </Grid>
 
 </ui:AtlasWindow>
 

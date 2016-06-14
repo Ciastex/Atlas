@@ -1,10 +1,8 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
-using Atlas.UI.Extensions;
 
 namespace Atlas.UI
 {
@@ -16,9 +14,22 @@ namespace Atlas.UI
         private Border CaptionBorder { get; set; }
         private Border MainBorder { get; set; }
 
+        public static readonly DependencyProperty CaptionMenuProperty = DependencyProperty.RegisterAttached("CaptionMenu", typeof(List<AtlasMenuItem>), typeof(AtlasWindow));
+
+        public List<AtlasMenuItem> CaptionMenu
+        {
+            get { return GetValue(CaptionMenuProperty) as List<AtlasMenuItem>; }
+            set { SetValue(CaptionMenuProperty, value); }
+        }
+
         static AtlasWindow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AtlasWindow), new FrameworkPropertyMetadata(typeof(AtlasWindow)));
+        }
+
+        public AtlasWindow()
+        {
+            CaptionMenu = new List<AtlasMenuItem>();
         }
 
         public override void OnApplyTemplate()
@@ -41,9 +52,7 @@ namespace Atlas.UI
                 MinimizeButton.Click += MinimizeButton_Click;
 
             if (CaptionBorder != null)
-            {
                 CaptionBorder.MouseDown += Border_MouseDown;
-            }
         }
 
         public void SetWindowBorderColor(Color color)

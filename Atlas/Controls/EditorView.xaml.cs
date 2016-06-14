@@ -18,7 +18,13 @@ namespace Atlas.Controls
             InitializeComponent();
 
             TabControl.TabPanelDoubleClick += TabControl_TabPanelDoubleClick;
+            TabControl.BeforeTabClosed += TabControl_BeforeTabClosed;
             AddNewTab(null, true);
+        }
+
+        private void TabControl_BeforeTabClosed(object sender, UI.Events.TabCloseEventArgs e)
+        {
+
         }
 
         public void AddNewTab(string fileName, bool switchToNew)
@@ -54,7 +60,7 @@ namespace Atlas.Controls
                 Header = "new",
                 Content = textEditor
             };
-
+                
             if (!string.IsNullOrEmpty(fileName))
             {
                 try
@@ -72,7 +78,9 @@ namespace Atlas.Controls
             TabControl.Items.Add(atlasTabItem);
 
             if (switchToNew)
-                TabControl.SelectedIndex = TabControl.Items.Count - 1;
+            {
+                atlasTabItem.IsSelected = true;
+            }
         }
 
 

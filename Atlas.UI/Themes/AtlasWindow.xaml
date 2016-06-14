@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Atlas.UI">
-    
+
     <Style x:Key="CaptionButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
@@ -14,6 +14,7 @@
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           Content="{TemplateBinding Content}" />
+
                     </Grid>
 
 
@@ -30,7 +31,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="{x:Type local:AtlasWindow}">
         <Setter Property="Background" Value="#2D2D30" />
 
@@ -66,14 +67,28 @@
                                     HorizontalAlignment="Stretch"
                                     Grid.Row="0">
                                 <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Menu x:Name="PART_CaptionMenu"
+                                          Grid.Column="0" 
+                                          Background="#2D2D30" 
+                                          VerticalAlignment="Center"
+                                          Margin="6,0,0,0"
+                                          ItemsSource="{TemplateBinding CaptionMenu}" />
+
                                     <TextBlock x:Name="PART_Title"
+                                               Grid.Column="1"
                                                Text="{TemplateBinding Title}"
-                                               Margin="8,0,0,0" 
                                                VerticalAlignment="Center" 
-                                               HorizontalAlignment="Left"
+                                               HorizontalAlignment="Center"
                                                Foreground="#999999" />
 
-                                    <StackPanel Orientation="Horizontal"
+                                    <StackPanel Grid.Column="2"
+                                                Orientation="Horizontal"
                                                 VerticalAlignment="Top"
                                                 HorizontalAlignment="Right">
                                         <Button x:Name="PART_Minimize"
@@ -116,7 +131,7 @@
                                 </Grid>
                             </Border>
 
-                            <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}"/>
+                            <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
                         </Grid>
                     </Border>
 
@@ -124,6 +139,10 @@
                         <Trigger Property="IsActive" Value="False">
                             <Setter TargetName="PART_Title" Property="Foreground" Value="#6F6F70" />
                             <Setter TargetName="PART_MainBorder" Property="BorderBrush" Value="#424245" />
+                        </Trigger>
+
+                        <Trigger SourceName="PART_CaptionMenu" Property="HasItems" Value="False">
+                            <Setter TargetName="PART_CaptionMenu" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

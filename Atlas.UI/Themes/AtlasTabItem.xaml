@@ -49,7 +49,7 @@
                                           Margin="5,2,5,2"
                                           Foreground="White"
                                           FontSize="12"
-                                          TextAlignment="Left"/>
+                                          TextAlignment="Left" />
                             <Button x:Name="PART_CloseButton"
                                     Width="15"
                                     Height="15"
@@ -58,7 +58,6 @@
                                     Style="{StaticResource CloseTabButton}"
                                     Margin="5,2,5,2" />
                         </StackPanel>
-
                     </Grid>
 
                     <ControlTemplate.Triggers>
