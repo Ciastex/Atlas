@@ -79,10 +79,10 @@ namespace Atlas.Controls
 
             if (switchToNew)
             {
-                atlasTabItem.IsSelected = true;
+                TabControl.SelectedIndex = TabControl.Items.Count - 1;
+                textEditor.Focus();
             }
         }
-
 
         private void TabControl_TabPanelDoubleClick(object sender, System.EventArgs e)
         {

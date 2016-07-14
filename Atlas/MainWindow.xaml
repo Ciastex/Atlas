@@ -5,15 +5,33 @@
                 xmlns:controls="clr-namespace:Atlas.Controls"
                 Title="Atlas IDE" Height="350" Width="525"
                 Background="#2D2D30">
+
     <ui:AtlasWindow.CaptionMenu>
         <ui:AtlasMenuItem Header="File">
-            <ui:AtlasMenuItem Header="Open" />
-            <ui:AtlasMenuItem Header="Save" />
-            <ui:AtlasMenuItem Header="Exit" />
+            <ui:AtlasMenuItem Header="New">
+                <ui:AtlasMenuItem Header="Create new file" />
+                <ui:AtlasMenuItem Header="Create new project" />
+            </ui:AtlasMenuItem>
+
+            <ui:AtlasMenuItem Header="Open">
+                <ui:AtlasMenuItem Header="File" Click="OpenFileMenuItem_Click" />
+                <ui:AtlasMenuItem Header="Project" />
+            </ui:AtlasMenuItem>
+
+            <Separator />
+
+            <ui:AtlasMenuItem Header="Save current file" />
+            <ui:AtlasMenuItem Header="Save current file as..." />
+            <ui:AtlasMenuItem Header="Save all files" />
+
+            <Separator />
+
+            <ui:AtlasMenuItem Header="Close current file" />
+            <ui:AtlasMenuItem Header="Close current project" />
         </ui:AtlasMenuItem>
 
         <ui:AtlasMenuItem Header="Edit">
-            <ui:AtlasMenuItem Header="Nope, no editing for you" />
+            <ui:AtlasMenuItem Header="Nope, no editing for you." />
         </ui:AtlasMenuItem>
         <ui:AtlasMenuItem Header="View">
             <ui:AtlasMenuItem Header="No viewing permitted." />
@@ -30,8 +48,7 @@
     </ui:AtlasWindow.CaptionMenu>
 
     <Grid>
-
-        <controls:EditorView />
+        <controls:EditorView x:Name="EditorView" />
     </Grid>
 
 </ui:AtlasWindow>

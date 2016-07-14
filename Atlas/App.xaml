@@ -5,5 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+            <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/DarkTheme.xaml" />
+
     </Application.Resources>
 </Application>

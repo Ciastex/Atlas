@@ -14,13 +14,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Atlas.UI;
+using Microsoft.Win32;
 
 namespace Atlas
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : AtlasWindow
+    public partial class MainWindow
     {
         private Timer timer;
         private Random rand;
@@ -46,6 +44,21 @@ namespace Atlas
             col.B = (byte)rand.Next(0, 255);
 
             SetWindowBorderColor(col);
+        }
+
+        private void OpenFileMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var ofd = new OpenFileDialog();
+            ofd.Multiselect = false;
+            ofd.CheckFileExists = true;
+            ofd.CheckPathExists = true;
+
+            ofd.FileOk += (o, args) =>
+            {
+                EditorView.AddNewTab(ofd.FileName, true);
+            };
+
+            ofd.ShowDialog(this);
         }
     }
 }

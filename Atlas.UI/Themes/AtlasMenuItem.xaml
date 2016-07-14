@@ -77,7 +77,21 @@
     <ControlTemplate x:Key="SubmenuItemTemplate" TargetType="{x:Type local:AtlasMenuItem}">
         <Grid x:Name="PART_Main"
               Background="#1B1B1C">
-            <TextBlock Padding="10,4" 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0"
+                   x:Name="PART_Icon"
+                   Width="16"
+                   Height="16"
+                   SnapsToDevicePixels="True"
+                   RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                   Source="{TemplateBinding Icon}" />
+
+            <TextBlock Grid.Column="1"
+                       Padding="10,4" 
                        Foreground="WhiteSmoke" 
                        Text="{TemplateBinding Header}"/>
 
@@ -87,6 +101,10 @@
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter TargetName="PART_Main" Property="Background" Value="#3E3E40" />
             </Trigger>
+
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -95,12 +113,28 @@
         <Grid x:Name="PART_Main"
               Background="#1B1B1C"
               SnapsToDevicePixels="True">
-            <TextBlock Padding="10,4" 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Image Grid.Column="0"
+                   x:Name="PART_Icon"
+                   Width="16"
+                   Height="16"
+                   SnapsToDevicePixels="True"
+                   RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                   Source="{TemplateBinding Icon}" />
+            
+            <TextBlock Grid.Column="1"
+                       Padding="10,4" 
                        Margin="0,0,8,0"
                        Foreground="WhiteSmoke" 
                        Text="{TemplateBinding Header}"/>
 
-            <Path HorizontalAlignment="Right"
+            <Path Grid.Column="2"
+                  HorizontalAlignment="Right"
                   VerticalAlignment="Center"
                   Data="M 0 0 L 0 7 L 4 3.5 Z" 
                   Fill="#6D6D70"
@@ -109,7 +143,8 @@
             <Popup Placement="Right" 
                    IsOpen="{TemplateBinding IsSubmenuOpen}"
                    SnapsToDevicePixels="True"
-                   VerticalOffset="-1"
+                   VerticalOffset="-3"
+                   HorizontalOffset="2"
                    Focusable="False">
                 <Border BorderBrush="#333337"
                         BorderThickness="1"
@@ -124,6 +159,10 @@
         <ControlTemplate.Triggers>
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter TargetName="PART_Main" Property="Background" Value="#3E3E40" />
+            </Trigger>
+            
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
